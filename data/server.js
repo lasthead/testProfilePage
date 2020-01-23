@@ -2,7 +2,12 @@
 
 let userData = {
     name: 'Vasya',
-    surname: 'Pupkin'
+    surname: 'Pupkin',
+    parent: {
+        name: 'Ivan',
+        surname: 'Ivanov',
+        age: '20'
+    }
 }
 
 let profile = {
@@ -17,6 +22,10 @@ export const saveUserData = async (data) => {
     if(userData = data)     
     console.log('200OK')
     return true
+}
+
+export const saveParentData = async (data) => {
+    userData.parent = data
 }
 
 export const saveProfile = async (data) => {
