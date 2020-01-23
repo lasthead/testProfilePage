@@ -16,12 +16,7 @@ export const mutations = {
     state.userData = data
   },
   SET_PARENT({ userData }, data) {
-    userData.parent = data
-  },
-  UPDATE_PARENT({ userData }, data) {
-    //let newObject = JSON.parse(JSON.stringify(userData))
-    console.log(userData)
-    //Vue.set(userData, 'parent', data)
+    Vue.set(userData, 'parent', data)
   }
 }
 
@@ -32,19 +27,13 @@ export const actions = {
       return data
   },
 
-  async LOAD_PARENT({ commit }) {
-    const data = await getUserData()
-    commit('SET_PARENT', data.parent)
-    return data.parent
-  },
-
   async SAVE_DATA({ commit }, data) {
-      let result = await saveUserData(data)
+      await saveUserData(data)
       commit('SET_DATA', data)
   },
 
   async SAVE_PARENT({ state, commit }, data) {
-    let result = await saveParentData(data)
-    commit('UPDATE_PARENT', data)
-}
+    await saveParentData(data)
+    commit('SET_PARENT', data)
+  }
 }

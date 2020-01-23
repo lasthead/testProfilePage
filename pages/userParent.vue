@@ -14,6 +14,14 @@
         placeholder="Enter Familia"
       ></b-form-input>
     </b-form-group>
+    <b-form-group label="Your Age:">
+      <b-form-input
+        v-if="parentData.age"
+        v-model="parentData.age"
+        required
+        placeholder="Enter Age"
+      ></b-form-input>
+    </b-form-group>
     <b-btn @click="onSave" variant="primary">Save</b-btn>
   </div>
 </template>
@@ -37,11 +45,16 @@
       ...mapGetters({ defaultData: 'user/GET_DATA' }),
       dataSaved() {
         return this.parentData.name === this.defaultData.parent.name 
-              && this.parentData.surname === this.defaultData.parent.surname
+              && this.parentData.surname === this.defaultData.parent.surname 
+              && this.parentData.age === this.defaultData.parent.age 
       }
     },
     async asyncData({ store }) {
-      return { parentData: { ...await store.dispatch('user/LOAD_PARENT') }}
+      return { 
+        parentData: JSON.parse(JSON.stringify({ 
+          ...await store.dispatch('user/LOAD_DATA') 
+        })).parent
+      }
     },
     methods: {
       ...mapActions({ saveParentData: 'user/SAVE_PARENT' }),

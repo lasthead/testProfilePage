@@ -24,9 +24,7 @@ export const saveUserData = async (data) => {
     return true
 }
 
-export const saveParentData = async (data) => {
-    userData.parent = data
-}
+export const saveParentData = async (data) => true
 
 export const saveProfile = async (data) => {
     if(profile = data)     
