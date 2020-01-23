@@ -20,6 +20,7 @@
 
 <script>
   import { mapActions, mapGetters, mapMutations } from 'vuex'
+  import { validateMessages } from '~/seeds'
 
   export default {
     name: 'PageUser',
@@ -28,21 +29,31 @@
         userData: {
           name: '',
           surname:''
-        }
+        },
+        validateMessages
       }
     },
     computed: {
-      ...mapGetters({ defaultData: 'user/GET_DATA' })
+      ...mapGetters({ defaultData: 'user/GET_DATA' }),
+      dataSaved() {
+        return this.userData.name === this.defaultData.name 
+              && this.userData.surname === this.defaultData.surname
+      }
     },
     async asyncData({ store }) {
       return { userData: { ...await store.dispatch('user/LOAD_DATA') }}
     },
     methods: {
       ...mapActions({ saveUserData: 'user/SAVE_DATA' }),
-
       async onSave() {
         await this.saveUserData(this.userData)
       }
+    },
+    
+    beforeRouteLeave (to, from, next) {
+      if (this.dataSaved) { next(true); return }
+
+      confirm(this.validateMessages.leavePageUnsaved) ? next(true) : next(false)
     }
   }
 </script>
