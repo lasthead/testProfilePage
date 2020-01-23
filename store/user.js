@@ -1,4 +1,4 @@
-import { userData, endpointSave } from '../data/server'
+import { getUserData, saveUserData } from '../data/server'
 
 export const state = () => ({
     userData:{}
@@ -16,13 +16,13 @@ export const mutations = {
 
 export const actions = {
   async LOAD_DATA({ commit }) {
-      const data = await userData()
+      const data = await getUserData()
       commit('SET_DATA', data)
       return data
   },
 
   async SAVE_DATA({ commit }, data) {
-      let result = await endpointSave(data)
+      let result = await saveUserData(data)
       commit('SET_DATA', data)
   }
 }
