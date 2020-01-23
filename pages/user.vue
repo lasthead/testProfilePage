@@ -20,17 +20,17 @@
 
 <script>
   import { mapActions, mapGetters, mapMutations } from 'vuex'
-  import { validateMessages } from '~/seeds'
+  import confirmExitMixin from "~/mixins/confirmExitMixin";
 
   export default {
     name: 'PageUser',
-    data(){
-      return{
+    mixins: [confirmExitMixin],
+    data() {
+      return {
         userData: {
           name: '',
           surname:''
-        },
-        validateMessages
+        }
       }
     },
     computed: {
@@ -48,12 +48,6 @@
       async onSave() {
         await this.saveUserData(this.userData)
       }
-    },
-    
-    beforeRouteLeave (to, from, next) {
-      if (this.dataSaved) { next(true); return }
-
-      confirm(this.validateMessages.leavePageUnsaved) ? next(true) : next(false)
     }
   }
 </script>
