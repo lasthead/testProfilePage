@@ -27,11 +27,17 @@ export const actions = {
       return data
   },
 
+  async LOAD_PARENT({ commit }) {
+      const data = await getUserData()
+      commit('SET_PARENT', data.parent)
+      return data.parent
+  },
+
   async SAVE_DATA({ commit }, data) {
       await saveUserData(data)
       commit('SET_DATA', data)
   },
-
+  
   async SAVE_PARENT({ state, commit }, data) {
     await saveParentData(data)
     commit('SET_PARENT', data)

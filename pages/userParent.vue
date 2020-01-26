@@ -37,7 +37,8 @@
       return {
         parentData: {
           name: '',
-          surname:''
+          surname:'',
+          age: ''
         }
       }
     },
@@ -52,9 +53,9 @@
     async asyncData({ store }) {
       return { 
         // Clone the object so as not to change the state userData avoid mutation
-        parentData: JSON.parse(JSON.stringify({ 
-          ...await store.dispatch('user/LOAD_DATA') 
-        })).parent
+        parentData: { 
+          ...await store.dispatch('user/LOAD_PARENT') 
+        }
       }
     },
     methods: {
