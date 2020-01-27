@@ -45,16 +45,15 @@
     computed: {
       ...mapGetters({ defaultData: 'user/GET_DATA' }),
       dataSaved() {
-        return this.parentData.name === this.defaultData.parent.name 
-              && this.parentData.surname === this.defaultData.parent.surname 
-              && this.parentData.age === this.defaultData.parent.age 
+        return this.parentData.name === this.defaultData.parent.name
+              && this.parentData.surname === this.defaultData.parent.surname
+              && this.parentData.age === this.defaultData.parent.age
       }
     },
     async asyncData({ store }) {
-      return { 
-        // Clone the object so as not to change the state userData avoid mutation
-        parentData: { 
-          ...await store.dispatch('user/LOAD_PARENT') 
+      return {
+        parentData: {
+          ...await store.dispatch('user/LOAD_PARENT')
         }
       }
     },

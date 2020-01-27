@@ -1,12 +1,8 @@
-import { getProfile, saveProfile } from '../data/server'
+import {getProfile, saveProfile} from '../data/server'
 
 export const state = () => ({
-    profile:{}
+  profile: {}
 })
-
-export const getters = {
-  GET_PROFILE: ({ profile }) => profile
-}
 
 export const mutations = {
   SET_PROFILE(state, data) {
@@ -15,14 +11,14 @@ export const mutations = {
 }
 
 export const actions = {
-  async LOAD_PROFILE({ commit }) {
-      const data = await getProfile()
-      commit('SET_PROFILE', data)
-      return data
+  async LOAD_PROFILE({commit}) {
+    const data = await getProfile()
+    commit('SET_PROFILE', data)
+    return data
   },
 
-  async SAVE_PROFILE({ commit }, data) {
-      let result = await saveProfile(data)
-      commit('SET_PROFILE', data)
+  async SAVE_PROFILE({commit}, data) {
+    let result = await saveProfile(data)
+    commit('SET_PROFILE', data)
   }
 }
