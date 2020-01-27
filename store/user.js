@@ -1,4 +1,4 @@
-import {getUserData, saveUserData, saveParentData} from '../data/server'
+import { getUserData, saveUserData, saveParentData } from '../data/server'
 import Vue from 'vue'
 
 export const state = () => ({
@@ -8,7 +8,7 @@ export const state = () => ({
 })
 
 export const getters = {
-  GET_DATA: ({userData}) => userData
+  GET_DATA: ({ userData }) => userData
 }
 
 export const mutations = {
@@ -21,24 +21,24 @@ export const mutations = {
 }
 
 export const actions = {
-  async LOAD_DATA({commit}) {
+  async LOAD_DATA({ commit }) {
     const data = await getUserData()
     commit('SET_DATA', { ...data })
     return data
   },
 
-  async LOAD_PARENT({commit}) {
+  async LOAD_PARENT({ commit }) {
     const data = await getUserData()
     commit('SET_PARENT', { ...data.parent })
     return data.parent
   },
 
-  async SAVE_DATA({commit}, data) {
+  async SAVE_DATA({ commit }, data) {
     await saveUserData(data)
     commit('SET_DATA', { ...data })
   },
 
-  async SAVE_PARENT({state, commit}, data) {
+  async SAVE_PARENT({ state, commit }, data) {
     await saveParentData(data)
     commit('SET_PARENT', { ...data })
   }

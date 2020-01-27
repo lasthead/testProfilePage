@@ -11,13 +11,13 @@ export const mutations = {
 }
 
 export const actions = {
-  async LOAD_PROFILE({commit}) {
+  async LOAD_PROFILE({ commit }) {
     const data = await getProfile()
     commit('SET_PROFILE', data)
     return data
   },
 
-  async SAVE_PROFILE({commit}, data) {
+  async SAVE_PROFILE({ commit }, data) {
     let result = await saveProfile(data)
     commit('SET_PROFILE', data)
   }
