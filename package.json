@@ -8,7 +8,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "test": "jest test"
   },
   "dependencies": {
     "nuxt": "^2.10.2",
@@ -16,5 +17,11 @@
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.11"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.30",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
+    "vue-jest": "^4.0.0-0",
+    "jest": "^24.1.0"
+  }
 }
