@@ -23,7 +23,7 @@
   import confirmExitMixin from "~/mixins/confirmExitMixin";
 
   export default {
-    name: 'PageUser',
+    name: 'User',
     mixins: [confirmExitMixin],
     data() {
       return {
@@ -36,7 +36,7 @@
     computed: {
       ...mapGetters({ defaultData: 'user/GET_DATA' }),
       dataSaved() {
-        return this.userData.name === this.defaultData.name 
+        return this.userData.name === this.defaultData.name
               && this.userData.surname === this.defaultData.surname
       }
     },
